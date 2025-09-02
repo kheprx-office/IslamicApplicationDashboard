@@ -4,8 +4,11 @@ export const routes: Routes = [
     { path: '', redirectTo: 'auth', pathMatch: 'full' },
     { path : 'auth', loadComponent: () => import('./layouts/auth-layout/auth-layout.component').then(m => m.AuthLayoutComponent), 
         children: [
-            { path: '', redirectTo: 'login', pathMatch: 'full' },
-            { path: 'login', loadComponent: () => import('./pages/login/login.component').then(m => m.LoginComponent) }
+            // { path: '', redirectTo: 'login', pathMatch: 'full' },
+            // { path: 'login', loadComponent: () => import('./pages/login/login.component').then(m => m.LoginComponent) }
+
+            { path: '', redirectTo: 'register', pathMatch: 'full' },
+            { path: 'register', loadComponent: () => import('./pages/register/register.component').then(m => m.RegisterComponent) }
         ]
     }, 
 

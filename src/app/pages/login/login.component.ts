@@ -24,10 +24,10 @@ export class LoginComponent {
   loginForm!: FormGroup;
 
   constructor(
-    // private authService_: AuthService,
-    // private _notifecationsService: NotifecationsService,
-    // private router: Router,
-    // private _userData: UserDataService
+    private authService_: AuthService,
+    private _notifecationsService: NotifecationsService,
+    private router: Router,
+    private _userData: UserDataService
   ) {
     this.initFormControls();
     this.initFormGroupe();
@@ -50,31 +50,31 @@ export class LoginComponent {
   }
 
   submit() {
-    // if (this.loginForm.valid) {
-    //   this.siginIn(this.loginForm.value);
-    // } else {
-    //   this.loginForm.markAllAsTouched();
-    //   Object.keys(this.loginForm.controls).forEach((control) =>
-    //     this.loginForm.controls[control].markAsDirty()
-    //   );
-    // }
+    if (this.loginForm.valid) {
+      this.siginIn(this.loginForm.value);
+    } else {
+      this.loginForm.markAllAsTouched();
+      Object.keys(this.loginForm.controls).forEach((control) =>
+        this.loginForm.controls[control].markAsDirty()
+      );
+    }
   }
 
   siginIn(data: ILogin): void {
-    // this.authService_.login(data).subscribe({
-    //   next: (response) => {
-    //     if (response._id) {
-    //       this._notifecationsService.showSuccess('success', 'success login');
-    //       localStorage.setItem('token', response._id);
-    //       this._userData.userName.next(response.name);
-    //       localStorage.setItem('username', response.name);
-    //     }
-    //     this.router.navigate(['home']);
-    //   },
-    //   error: (err) => {
-    //     this._notifecationsService.showError('Error', err.error.error);
-    //   },
-    // });
+    this.authService_.login(data).subscribe({
+      next: (response) => {
+        if (response._id) {
+          this._notifecationsService.showSuccess('success', 'success login');
+          localStorage.setItem('token', response._id);
+          this._userData.userName.next(response.name);
+          localStorage.setItem('username', response.name);
+        }
+        this.router.navigate(['home']);
+      },
+      error: (err) => {
+        this._notifecationsService.showError('Error', err.error.error);
+      },
+    });
   }
 
 }

@@ -12,11 +12,11 @@ export class AuthService {
   constructor(private _httpClient: HttpClient) {}
 
   register(registerData: IRegister): Observable<any> {
-    return this._httpClient.post(`${baseUrl}/api/users`, registerData);
+    return this._httpClient.get(`${baseUrl}/posats`);
   }
 
   login(loginUser: ILogin): Observable<any> {
-    return this._httpClient.post(`${baseUrl}/api/users/auth`, loginUser);
+    return this._httpClient.get(`${baseUrl}/posts`);
   }
   authorized(): boolean {
     if (localStorage.getItem('token') != null) {
