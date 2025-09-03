@@ -61,18 +61,39 @@ export class LoginComponent {
   }
 
   siginIn(data: ILogin): void {
+     debugger
     this.authService_.login(data).subscribe({
+
+      
       next: (response) => {
-        if (response._id) {
+        console.log('next');
+        console.log(response);
+        if (response.id== 1 ) {
+          console.log('User is logged in');
+
           this._notifecationsService.showSuccess('success', 'success login');
-          localStorage.setItem('token', response._id);
+          localStorage.setItem('token', '12123123123');
           this._userData.userName.next(response.name);
           localStorage.setItem('username', response.name);
+        } else {
+
+               console.log('User is logged else ');
+
+          localStorage.setItem('token', '12123123123');
+
+          //this._notifecationsService.showError('Error', 'Invalid credentials');
         }
-        this.router.navigate(['home']);
+        // Navigate to user home page after successful login
+        localStorage.setItem('token', '12123123123');
+
+        this.router.navigate(['/user/home']);
       },
       error: (err) => {
         this._notifecationsService.showError('Error', err.error.error);
+      },
+      complete: () => {
+        console.log('hhhhhhhhhScomplete');
+         localStorage.setItem('token', '12sad123erwed1231asd23');
       },
     });
   }

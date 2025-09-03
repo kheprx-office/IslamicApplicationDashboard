@@ -20,8 +20,12 @@ export class AuthService {
   }
   authorized(): boolean {
     if (localStorage.getItem('token') != null) {
+      console.log('User is authorized');
       return true;
-    } else return false;
+    } else {
+      console.log('User is not authorized');
+      return false;
+    }
   }
 
   logout(): Observable<any> {
